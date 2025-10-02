@@ -1,27 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Read(//c/Users/mymem/Documents/snap-temp/**)",
-      "Bash(robocopy:*)",
-      "Bash(xcopy:*)",
-      "Bash(php artisan:*)",
-      "Bash(composer install:*)",
-      "Bash(composer:*)",
-      "Bash(npm install)",
-      "Bash(npm install:*)",
-      "Bash(npx tailwindcss init:*)",
+      "Bash(PGPASSWORD=mypassword \"C:\\Program Files\\PostgreSQL\\17\\bin\\psql.exe\" -U postgres -h localhost -d snap -c \"EXPLAIN ANALYZE SELECT *, ST_Distance(location, ST_SetSRID(ST_MakePoint(79.8612, 6.9271), 4326)::geography) as distance_meters FROM shops WHERE ST_DWithin(location, ST_SetSRID(ST_MakePoint(79.8612, 6.9271), 4326)::geography, 10000) ORDER BY distance_meters LIMIT 5;\")",
+      "Bash(curl -s \"http://127.0.0.1:8000/api/shops/nearby?latitude=6.9271&longitude=79.8612&radius=10000\")",
       "Bash(git add:*)",
-      "Bash(PGPASSWORD=mypassword \"C:\\Program Files\\PostgreSQL\\17\\bin\\psql.exe\" -U postgres -h localhost -d snap -c \"CREATE EXTENSION postgis;\")",
-      "Bash(npm run build:*)",
-      "Bash(curl -s http://127.0.0.1:8000)",
-      "Bash(php:*)",
-      "Bash(curl:*)",
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
-      "Bash(gh auth:*)",
-      "Bash(gh issue create:*)",
-      "Bash(gh issue list:*)",
-      "Bash(PGPASSWORD=mypassword \"C:\\Program Files\\PostgreSQL\\17\\bin\\psql.exe\" -U postgres -h localhost -d snap -c \"SELECT PostGIS_version();\")"
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

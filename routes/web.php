@@ -27,7 +27,11 @@ Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('cat
 
 // Shops
 Route::get('/shops', [ShopController::class, 'index'])->name('shops.index');
+Route::get('/shops/nearby', [\App\Http\Controllers\NearbyShopsController::class, 'view'])->name('shops.nearby');
 Route::get('/shops/{id}', [ShopController::class, 'show'])->name('shops.show');
+
+// API - Nearby shops
+Route::get('/api/shops/nearby', [\App\Http\Controllers\NearbyShopsController::class, 'index'])->name('api.shops.nearby');
 
 // Protected routes
 Route::middleware('auth')->group(function () {
