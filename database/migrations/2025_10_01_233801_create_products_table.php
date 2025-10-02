@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->onDelete('restrict');
             $table->string('name');
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2);
             $table->integer('stock_quantity')->default(0);

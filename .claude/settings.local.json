@@ -20,7 +20,8 @@
       "Bash(git push:*)",
       "Bash(gh auth:*)",
       "Bash(gh issue create:*)",
-      "Bash(gh issue list:*)"
+      "Bash(gh issue list:*)",
+      "Bash(PGPASSWORD=mypassword \"C:\\Program Files\\PostgreSQL\\17\\bin\\psql.exe\" -U postgres -h localhost -d snap -c \"SELECT PostGIS_version();\")"
     ],
     "deny": [],
     "ask": []

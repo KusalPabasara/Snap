@@ -176,6 +176,79 @@
         });
     </script>
 
+    <!-- Geolocation Script -->
+    <script>
+        // Request geolocation on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if geolocation is already stored
+            const storedLocation = localStorage.getItem('userLocation');
+
+            if (!storedLocation && navigator.geolocation) {
+                // Request location permission
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const location = {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                            accuracy: position.coords.accuracy,
+                            timestamp: new Date().toISOString()
+                        };
+
+                        localStorage.setItem('userLocation', JSON.stringify(location));
+                        console.log('Location saved:', location);
+
+                        // Dispatch custom event for components that need location
+                        window.dispatchEvent(new CustomEvent('locationUpdated', { detail: location }));
+                    },
+                    function(error) {
+                        console.warn('Geolocation error:', error.message);
+                        // Store that user denied permission
+                        if (error.code === error.PERMISSION_DENIED) {
+                            localStorage.setItem('locationPermission', 'denied');
+                        }
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 5000,
+                        maximumAge: 0
+                    }
+                );
+            } else if (storedLocation) {
+                // Dispatch event with stored location
+                const location = JSON.parse(storedLocation);
+                window.dispatchEvent(new CustomEvent('locationUpdated', { detail: location }));
+            }
+        });
+
+        // Function to refresh location (can be called by components)
+        window.refreshLocation = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const location = {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                            accuracy: position.coords.accuracy,
+                            timestamp: new Date().toISOString()
+                        };
+
+                        localStorage.setItem('userLocation', JSON.stringify(location));
+                        window.dispatchEvent(new CustomEvent('locationUpdated', { detail: location }));
+                    },
+                    function(error) {
+                        console.warn('Geolocation error:', error.message);
+                    }
+                );
+            }
+        };
+
+        // Function to get stored location
+        window.getUserLocation = function() {
+            const stored = localStorage.getItem('userLocation');
+            return stored ? JSON.parse(stored) : null;
+        };
+    </script>
+
     @stack('scripts')
 </body>
 </html>
