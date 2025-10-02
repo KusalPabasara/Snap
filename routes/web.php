@@ -47,4 +47,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/register-shop', [ShopController::class, 'store'])->name('shops.store');
 });
 
+// Admin routes
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/shops', [\App\Http\Controllers\Admin\DashboardController::class, 'shops'])->name('shops');
+    Route::get('/users', [\App\Http\Controllers\Admin\DashboardController::class, 'users'])->name('users');
+    Route::get('/products', [\App\Http\Controllers\Admin\DashboardController::class, 'products'])->name('products');
+    Route::post('/shops/{id}/approve', [\App\Http\Controllers\Admin\DashboardController::class, 'approveShop'])->name('shops.approve');
+    Route::post('/shops/{id}/reject', [\App\Http\Controllers\Admin\DashboardController::class, 'rejectShop'])->name('shops.reject');
+});
+
 require __DIR__.'/auth.php';
