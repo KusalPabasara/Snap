@@ -9,6 +9,11 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+// Issues & Roadmap
+Route::get('/issues', function () {
+    return view('issues');
+})->name('issues');
+
 // Search
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/api/search', [SearchController::class, 'api'])->name('api.search');
