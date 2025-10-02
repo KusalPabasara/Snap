@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/mymem/Documents/snap-temp/**)",
+      "Bash(robocopy:*)",
+      "Bash(xcopy:*)",
+      "Bash(php artisan:*)",
+      "Bash(composer install:*)",
+      "Bash(composer:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss init:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
