@@ -10,7 +10,12 @@
       "Bash(npm install)",
       "Bash(npm install:*)",
       "Bash(npx tailwindcss init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(PGPASSWORD=mypassword \"C:\\Program Files\\PostgreSQL\\17\\bin\\psql.exe\" -U postgres -h localhost -d snap -c \"CREATE EXTENSION postgis;\")",
+      "Bash(npm run build:*)",
+      "Bash(curl -s http://127.0.0.1:8000)",
+      "Bash(php:*)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []
