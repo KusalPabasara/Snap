@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\AISearchController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -21,12 +22,19 @@ Route::get('/issues', function () {
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/api/search', [SearchController::class, 'api'])->name('api.search');
 
+// AI Search
+Route::get('/ai-search', [AISearchController::class, 'index'])->name('ai.search');
+Route::get('/search/results', [AISearchController::class, 'results'])->name('search.results');
+Route::post('/api/ai-search/image', [AISearchController::class, 'searchByImage'])->name('api.ai.search.image');
+Route::post('/api/ai-search/text', [AISearchController::class, 'searchByText'])->name('api.ai.search.text');
+
 // Categories
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('categories.show');
 
 // Shops
 Route::get('/shops', [ShopController::class, 'index'])->name('shops.index');
+Route::get('/shops/map', function() { return view('shops.map'); })->name('shops.map');
 Route::get('/shops/nearby', [\App\Http\Controllers\NearbyShopsController::class, 'view'])->name('shops.nearby');
 Route::get('/shops/{id}', [ShopController::class, 'show'])->name('shops.show');
 

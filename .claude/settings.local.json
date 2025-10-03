@@ -8,7 +8,9 @@
       "Bash(git push:*)",
       "Bash(gh issue close:*)",
       "Bash(gh issue comment:*)",
-      "Bash(gh issue:*)"
+      "Bash(gh issue:*)",
+      "Bash(npm run build:*)",
+      "Bash(PGPASSWORD=mypassword \"C:\\Program Files\\PostgreSQL\\17\\bin\\psql.exe\" -U postgres -h localhost -d snap -c \"UPDATE products SET image_url = CASE WHEN name LIKE ''%laptop%'' OR name LIKE ''%computer%'' THEN ''https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=400&fit=crop'' WHEN name LIKE ''%phone%'' OR name LIKE ''%mobile%'' THEN ''https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&h=400&fit=crop'' WHEN name LIKE ''%headphone%'' OR name LIKE ''%earphone%'' THEN ''https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=400&fit=crop'' WHEN name LIKE ''%watch%'' THEN ''https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=400&fit=crop'' WHEN name LIKE ''%camera%'' THEN ''https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&h=400&fit=crop'' WHEN name LIKE ''%shirt%'' OR name LIKE ''%tshirt%'' THEN ''https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop'' WHEN name LIKE ''%shoe%'' THEN ''https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=400&fit=crop'' WHEN name LIKE ''%bag%'' THEN ''https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=400&fit=crop'' WHEN name LIKE ''%book%'' THEN ''https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&h=400&fit=crop'' ELSE ''https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=400&fit=crop'' END WHERE image_url IS NULL;\")"
     ],
     "deny": [],
     "ask": []
