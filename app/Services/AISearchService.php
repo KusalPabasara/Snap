@@ -73,7 +73,17 @@ class AISearchService
      */
     protected function searchWithOpenAIVision(string $imageData, string $mimeType): array
     {
-        $response = Http::withHeaders([
+        // Check if API key is set
+        if (empty($this->openaiKey) || $this->openaiKey === 'your_openai_api_key_here') {
+            return [
+                'success' => false,
+                'error' => 'OpenAI API key not configured. Please add OPENAI_API_KEY to your .env file.'
+            ];
+        }
+
+        $response = Http::withOptions([
+            'verify' => false, // Disable SSL verification for local development
+        ])->withHeaders([
             'Authorization' => 'Bearer ' . $this->openaiKey,
             'Content-Type' => 'application/json',
         ])->timeout(30)->post('https://api.openai.com/v1/chat/completions', [
@@ -129,7 +139,17 @@ class AISearchService
      */
     protected function searchWithOpenAI(string $query): array
     {
-        $response = Http::withHeaders([
+        // Check if API key is set
+        if (empty($this->openaiKey) || $this->openaiKey === 'your_openai_api_key_here') {
+            return [
+                'success' => false,
+                'error' => 'OpenAI API key not configured. Please add OPENAI_API_KEY to your .env file.'
+            ];
+        }
+
+        $response = Http::withOptions([
+            'verify' => false, // Disable SSL verification for local development
+        ])->withHeaders([
             'Authorization' => 'Bearer ' . $this->openaiKey,
             'Content-Type' => 'application/json',
         ])->timeout(30)->post('https://api.openai.com/v1/chat/completions', [
@@ -171,7 +191,17 @@ class AISearchService
      */
     protected function searchWithGeminiVision(string $imageData, string $mimeType): array
     {
-        $response = Http::timeout(30)->post(
+        // Check if API key is set
+        if (empty($this->geminiKey) || $this->geminiKey === 'your_gemini_api_key_here') {
+            return [
+                'success' => false,
+                'error' => 'Gemini API key not configured. Please add GEMINI_API_KEY to your .env file.'
+            ];
+        }
+
+        $response = Http::withOptions([
+            'verify' => false, // Disable SSL verification for local development
+        ])->timeout(30)->post(
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$this->geminiKey}",
             [
                 'contents' => [
@@ -218,7 +248,17 @@ class AISearchService
      */
     protected function searchWithGemini(string $query): array
     {
-        $response = Http::timeout(30)->post(
+        // Check if API key is set
+        if (empty($this->geminiKey) || $this->geminiKey === 'your_gemini_api_key_here') {
+            return [
+                'success' => false,
+                'error' => 'Gemini API key not configured. Please add GEMINI_API_KEY to your .env file.'
+            ];
+        }
+
+        $response = Http::withOptions([
+            'verify' => false, // Disable SSL verification for local development
+        ])->timeout(30)->post(
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={$this->geminiKey}",
             [
                 'contents' => [
